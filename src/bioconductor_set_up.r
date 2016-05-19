@@ -1,0 +1,22 @@
+# Bioconductor set up
+
+~/R/bin/bin/R
+source("http://bioconductor.org/biocLite.R")
+biocLite()
+biocLite("mouse4302.db")
+biocLite("limma")
+biocLite("affy")
+biocLite("xps")
+biocLite("oligo")
+biocLite("pd.mogene.2.0.st")
+biocLite("mas5")
+biocLite("gcrma")
+biocLite("affyQCReport")
+biocLite("ALL")
+biocLite("GEOquery")
+biocLite("AnnotationForge")
+biocLite("mouse.db0")
+biocLite("org.Mm.eg.db")
+biocLite("affyPLM")
+biocLite("puma")
+biocLite("pumadata")
