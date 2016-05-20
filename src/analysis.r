@@ -105,7 +105,7 @@ fit <- lmFit(exprs(celfiles.filtered$eset), design) # stop here
 contrast.matrix_wt_d75_vs_ko <-  makeContrasts( WT_d75_KO_d45 = WT_d75 - KO_d45, WT_d75_KO_d75 = WT_d75 - KO_d75, WT_d75_KO_d120 = WT_d75 - KO_d120, levels=design)
 WT_d75_vs_KO_fits <-contrasts.fit(fit,contrast.matrix_wt_d75_vs_ko)
 WT_d75_vs_KO_ebFit <- eBayes(WT_d75_vs_KO_fits)
-probeset.list_WT_d75_vs_KO <- topTable(WT_d75_vs_KO_ebFit, coef=1, p.value=0.001, adjust.method="fdr", number=10000, lfc=1.5)
+probeset.list_WT_d75_vs_KO <- topTable(WT_d75_vs_KO_ebFit, coef=2, p.value=0.001, adjust.method="fdr", number=10000, lfc=1.5)
 
 # annotation
 gene.symbols_WT_d75_vs_KO <- getSYMBOL(rownames(probeset.list_WT_d75_vs_KO), "mogene20sttranscriptcluster.db")
@@ -126,7 +126,7 @@ perl merged_result_AND_annotations.pl results_WT_d75_vs_KO.txt results_WT_d75_vs
 ## --- Paired Two group analysis analysis + HM
 
 # Heatmap
-library("gplots"
+library("gplots")
 
 wt <- est[, est$varLabels %in% c("WT_d75","IL-21R_KO_d75")]
 f_wt <- factor(as.character(as.factor(wt$varLabels)))
