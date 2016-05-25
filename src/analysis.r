@@ -132,8 +132,7 @@ wt <- est[, est$varLabels %in% c("WT_d75","IL-21R_KO_d75")]
 f_wt <- factor(as.character(as.factor(wt$varLabels)))
 design_wt <- model.matrix(~f_wt)
 fit_wt <- eBayes(lmFit(wt,design_wt))
-#topTable(fit_wt, coef=2, p.value=0.001, adjust.method="fdr", number=10000, lfc=1.5)) # nothing with this
-topTable(fit_wt, coef=2, p.value=0.01, adjust.method="none", number=10000, lfc=2)
+topTable(fit_wt, coef=2, p.value=0.001, adjust.method="fdr", number=10000, lfc=1.5)) 
 
 selected  <- p.adjust(fit_wt$p.value[, 2], method ="fdr", n = length(fit_wt$p.value[, 2])) < 0.001
 wt_2fc_Pval <- wt [selected, ]
@@ -141,7 +140,7 @@ wt_2fc_Pval <- wt [selected, ]
 color.map <- function(varLabels) { if (varLabels=="WT_d35") "#FF0000" else "#0000FF" }
 micecolors <- unlist(lapply(wt_2fc_Pval$varLabels, color.map))
 
-pdf("wt_d35_vs_wt_d45_3fc_Pval_0.001.pdf")
+pdf("wt_d35_vs_wt_d45_2fc_Pval_0.001.pdf")
 heatmap.2(exprs(wt_2fc_Pval), col=redgreen(75), scale="row", ColSideColors=micecolors,
           key=TRUE, symkey=FALSE, density.info="none", trace="none", cexRow=0.5)
 dev.off()
